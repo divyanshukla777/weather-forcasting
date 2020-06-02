@@ -2,8 +2,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request');
 const app = express()
+require('dotenv').config()
 
-const apiKey = 'cb6df9e70e25fc7c198244c8df195cf8';
+const apiKey = process.env.API_KEY;
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
