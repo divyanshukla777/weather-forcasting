@@ -7,7 +7,7 @@ require('dotenv').config()
 
 const apiKey = process.env.API_KEY;
 const port=process.env.PORT||3000;
-const gaID=process.env.GA_ID;
+let gaID=process.env.GA_ID;
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs')
