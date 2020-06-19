@@ -6,7 +6,7 @@ require('dotenv').config()
 
 const apiKey = process.env.API_KEY;
 const port=process.env.PORT||3000;
-
+const gaID=process.env.GA_ID;
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs')
@@ -21,14 +21,14 @@ app.post('/', function (req, res) {
 
   request(url, function (err, response, body) {
     if(err){
-      res.render('index', {weather: null, error: 'Error, please try again'});
+      res.render('index', {weather: null, error: 'Error, please try again',gaID:gaID});
     } else {
       let weather = JSON.parse(body)
       if(weather.main == undefined){
-        res.render('index', {weather: null, error: 'Error, please try again'});
+        res.render('index', {weather: null, error: 'Error, please try again',gaID:gaID});
       } else {
         let weatherText = `It's ${+((weather.main.temp-32)*(5/9)).toFixed(3)} degree celcius in ${weather.name}!`;
-        res.render('index', {weather: weatherText, error: null});
+        res.render('index', {weather: weatherText, error: null,gaID:gaID});
       }
     }
   });
